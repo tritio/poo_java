@@ -1,6 +1,6 @@
 package service;
 
-public class Triangulo extends Figura{
+public class Triangulo extends Figura implements Operaciones {
 		
 	private double base;
 	private double altura;
@@ -31,6 +31,18 @@ public class Triangulo extends Figura{
 	@Override
 	public double area() {
 		return (base*altura)/2;
+	}
+	
+	public void girar(int grados) {
+		base+=grados;
+		System.out.println("número de grados girados: " + grados);
+	}
+
+	@Override
+	public double invertir() {
+		System.out.println("inviritiendo triángulo");
+		base--;
+		return base+altura;
 	}
 
 }

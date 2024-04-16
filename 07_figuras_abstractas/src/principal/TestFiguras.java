@@ -36,5 +36,40 @@ public class TestFiguras {
 		op.girar(100);
 		System.out.println(op.invertir());
 	}
-
+	
+	/*
+	 * // ejemplos
+	 * 
+	 * Dadas esta clase e interfaces:
+	 * 
+	 * class C1{}
+	 * interface I1{}
+	 * interface I2{}
+	 * 
+	 * ¿Cuales de las siguientes definiciones son correctas?
+	 * a.-class C2 implements I2 extends C1{} // Mal. Se pone primero extends y después el implements
+	 * b.-class C3 extends I1, I2{} // Una clase implementa una interfazno la hereda
+	 * c.-interface IA implements I1{} // Mal. Una interfaz NO implementa otra. En todo caso podría heredar otra
+	 * d.-class C4 extends C1 implements I1, I2{} // Correcto 
+	 * e.-interface IB extends C1, I1, I2{} // MAL. La interfaz no puede heredar una clase, pero sí dos interfaces
+	 */
+	/*
+	 * interface I1{ 
+	 * 		void print();
+	 *  } 
+	 * class CA implements I1{
+	 * 		public void print(){
+	 * 		System.out.println("CA");
+	 * 	 } 
+	 *  }
+	 *  class CB extends CA{
+	 *  	 public void print(){
+	 * 		System.out.println("CB"); 
+	 * 		}
+	 *  }
+	 *  I1 i=(CA)(new CB()); // CA es superclase de CB por lo que se puede hacer el casting, aunque no tiene 
+	 *  mucho sentido porque  CB ya extiende de CA
+	 *  i.print();   // IMPRIME CB. El objeto i sigue siendo un objeto tipo B
+	 * 
+	 */
 }

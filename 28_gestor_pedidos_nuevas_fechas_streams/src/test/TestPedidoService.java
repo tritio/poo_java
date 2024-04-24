@@ -1,10 +1,10 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -31,8 +31,9 @@ class TestPedidoService {
 	}
 
 	@Test
-	void testPedidoMasReciente() {
-		assertEquals("coca-cola", service.pedidoMasReciente().getProducto());
+	void testPedidoMasReciente() {		
+		assertTrue(service.pedidoMasReciente().isPresent());
+		assertEquals("coca-cola", service.pedidoMasReciente().get().getProducto()); // get() porque es un Optional y envuelve todo
 	}
 
 	@Test

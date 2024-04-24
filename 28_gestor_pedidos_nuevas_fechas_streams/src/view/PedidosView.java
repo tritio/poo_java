@@ -1,12 +1,9 @@
 package view;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import model.Pedido;
@@ -83,13 +80,15 @@ public class PedidosView {
 		
 	}
 	
-	static void buscarMasReciente() {
-		Pedido p = service.pedidoMasReciente();
-		DateTimeFormatter sdf= DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		System.out.println("El pedido más reciente es: " +
-				p.getProducto() +
-				" fecha pedido: " + p.getFechaPedido().format(sdf) + 
-				" unidades " + p.getUnidades());		
+	static void buscarMasReciente() {		
+		// el servicio nos devuelve un Optional, por eso hacemos esto:
+		service.pedidoMasReciente().ifPresentOrElse(p-> { 
+			DateTimeFormatter sdf= DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			System.out.println("El pedido más reciente es: " +
+					p.getProducto() +
+					" fecha pedido: " + p.getFechaPedido().format(sdf) + 
+					" unidades " + p.getUnidades());	
+		}, ()-> System.out.println("No existen pedidos"));			
 	}
 	
 	static void buscarDosFechas() throws ParseException {
@@ -103,7 +102,7 @@ public class PedidosView {
 		String fecha2 = sc.nextLine();			
 		LocalDate date2=LocalDate.parse(fecha2, sdf);
 		
-		ArrayList<Pedido> resultados = service.pedidosEntreFecha(date1, date2);
+		List<Pedido> resultados = service.pedidosEntreFecha(date1, date2);
 		
 		for(Pedido p: resultados) {
 			System.out.println(" Producto: " + p.getProducto() + " Unidades: " + p.getUnidades() + 
